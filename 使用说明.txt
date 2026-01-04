@@ -1,0 +1,7 @@
+【运行说明】
+
+1.请确保电脑已安装 Python 和 VS Code。
+2.请在终端运行 pip install pygame 安装仿真库。
+3.用 VS Code 打开本文件夹。
+4.将 .vsix 文件拖入 VS Code 安装插件。
+5.点击左侧图标即可开始仿真。

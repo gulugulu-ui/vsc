@@ -1,61 +1,82 @@
 {
-  "name": "hutb",
-  "displayName": "hutb",
-  "publisher": "OpenHUTB",
-  "description": "为 Carla 自动驾驶模拟器 API、AirSim 无人机模拟器 API、Mujoco 模拟器 API 提供智能代码补全、文档和 IntelliSense 支持。",
-  "icon": "images/logo.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/OpenHUTB/vscode_ext"
-  },
-  "version": "0.1.3",
+  "name": "my-bishe",
+  "displayName": "my-bishe",
+  "description": "",
+  "version": "0.0.1",
   "engines": {
-      "vscode": "^1.94.0"
+    "vscode": "^1.107.0"
   },
   "categories": [
-      "Programming Languages"
+    "Other"
   ],
-  "activationEvents": [
-      "onLanguage:python"
-  ],
-  "main": "./extension.js",
-  "contributes": {
-      "languages": [{
-          "id": "python",
-          "extensions": [".py"]
-      }],
-      "configuration": {
-          "title": "CARLA API",
-          "properties": {
-              "carlaapi.showClasses": {
-                  "type": "boolean",
-                  "default": true,
-                  "description": "Show class completions"
-              },
-              "carlaapi.showMethods": {
-                  "type": "boolean",
-                  "default": true,
-                  "description": "Show method completions"
-              },
-              "carlaapi.showProperties": {
-                  "type": "boolean",
-                  "default": true,
-                  "description": "Show property completions"
-              }
-          }
-      }
-  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+      "contributes": {
+        "views": {
+            "explorer": [
+                {
+                    "id": "bisheView",
+                    "name": "人车交互系统操作面板 (Control Panel)"
+                }
+            ]
+        },
+                "commands": [
+            {
+                "command": "my-bishe.startSimulator",
+                "title": "启动仿真引擎",
+                "icon": "$(play)"
+            },
+            {
+                "command": "my-bishe.stopSimulator",
+                "title": "停止仿真",
+                "icon": "$(debug-stop)"
+            },
+            {
+                "command": "my-bishe.showReport",
+                "title": "生成分析报告",
+                "icon": "$(graph)"
+            },
+            {
+                "command": "my-bishe.showDocs",
+                "title": "系统说明",
+                "icon": "$(book)"
+            }
+        ],
+
+        "menus": {
+            "view/title": [
+                {
+                    "command": "my-bishe.startSimulator",
+                    "when": "view == bisheView",
+                    "group": "navigation"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "my-bishe.startSimulator",
+                    "when": "view == bisheView",
+                    "group": "inline"
+                }
+            ]
+        }
+    },
+
   "scripts": {
-      "lint": "eslint .",
-      "pretest": "npm run lint",
-      "test": "vscode-test"
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
   },
   "devDependencies": {
-      "@types/vscode": "^1.94.0",
-      "@types/mocha": "^10.0.9",
-      "@types/node": "20.x",
-      "eslint": "^9.13.0",
-      "@vscode/test-cli": "^0.0.10",
-      "@vscode/test-electron": "^2.4.1"
+    "@types/vscode": "^1.107.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
   }
 }
